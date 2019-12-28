@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Integration &#8212; angular froala wysiwyg v2019.09.17 文档</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="Update editor instructions" href="update.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="integration">
+<h1>Integration<a class="headerlink" href="#integration" title="永久链接至标题">¶</a></h1>
+<div class="section" id="use-with-angular-cli">
+<h2>Use with Angular CLI<a class="headerlink" href="#use-with-angular-cli" title="永久链接至标题">¶</a></h2>
+<div class="section" id="installing-angular-cli">
+<h3>Installing &#64;angular/cli<a class="headerlink" href="#installing-angular-cli" title="永久链接至标题">¶</a></h3>
+<p><em>Note</em>: you can skip this part if you already have application generated.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">&#64;angular/cli</span>
+<span class="pre">ng</span> <span class="pre">new</span> <span class="pre">my-app</span>
+<span class="pre">cd</span> <span class="pre">my-app</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="add-angular-froala-wysiwyg">
+<h3>Add angular-froala-wysiwyg<a class="headerlink" href="#add-angular-froala-wysiwyg" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>install <cite>angular-froala-wysiwyg</cite></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">angular-froala-wysiwyg</span> <span class="pre">--save</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/app/app.module.ts</cite> and add</p></li>
+</ul>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>typescript
+// Import all Froala Editor plugins.
+// import ‘froala-editor/js/plugins.pkgd.min.js’;</p>
+<p>// Import a single Froala Editor plugin.
+// import ‘froala-editor/js/plugins/align.min.js’;</p>
+<p>// Import a Froala Editor language file.
+// import ‘froala-editor/js/languages/de.js’;</p>
+<p>// Import Angular plugin.
+import { FroalaEditorModule, FroalaViewModule } from ‘angular-froala-wysiwyg’;
+…</p>
+<dl class="simple">
+<dt>&#64;NgModule({</dt><dd><p>…
+imports: [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot() … ],
+…</p>
+</dd>
+</dl>
+<div class="section" id="id5">
+<h4>})<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>open <cite>angular.json</cite> file and insert a new entry into the <cite>styles</cite> array</p></li>
+</ul>
+<p><a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a>json
+“styles”: [</p>
+<blockquote>
+<div><p>“styles.css”,
+“./node_modules/froala-editor/css/froala_editor.pkgd.min.css”,
+“./node_modules/froala-editor/css/froala_style.min.css”,</p>
+</div></blockquote>
+</div>
+<div class="section" id="id10">
+<h4>]<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>open <cite>src/app/app.component.html</cite> and add</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;div</span> <span class="pre">[froalaEditor]&gt;Hello,</span> <span class="pre">Froala!&lt;/div&gt;</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="run-angular-cli">
+<h3>Run angular-cli<a class="headerlink" href="#run-angular-cli" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">ng</span> <span class="pre">serve</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="use-with-ionic-v2-or-v3">
+<h2>Use with <cite>ionic v2 or v3</cite><a class="headerlink" href="#use-with-ionic-v2-or-v3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="create-ionic-app">
+<h3>Create Ionic app<a class="headerlink" href="#create-ionic-app" title="永久链接至标题">¶</a></h3>
+<p><em>Note</em>: you can skip this part if you already have application generated.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">cordova</span> <span class="pre">ionic</span>
+<span class="pre">ionic</span> <span class="pre">start</span> <span class="pre">sample</span> <span class="pre">blank</span>
+<span class="pre">cd</span> <span class="pre">sample</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="id11">
+<h3>Add angular-froala-wysiwyg<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>For v3 make sure that you use the latest version of ionic and also the latest version of angular.</p>
+<p>Installing Froala Wysiwyg Editor in Ionic is fairly easy, it can be done using npm:
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">angular-froala-wysiwyg</span> <span class="pre">--save</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>Inside <cite>src/app/app.component.html</cite> add</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;ion-app&gt;</span>
+<span class="pre">&lt;ion-router-outlet&gt;&lt;/ion-router-outlet&gt;</span>
+<span class="pre">&lt;div</span> <span class="pre">[froalaEditor]&gt;Hello,</span> <span class="pre">Froala!&lt;/div&gt;</span>
+<span class="pre">&lt;/ion-app&gt;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/app/app.module.ts</cite> and add</p></li>
+</ul>
+<p><a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a>typescript
+// Import all Froala Editor plugins.
+// import ‘froala-editor/js/plugins.pkgd.min.js’;</p>
+<p>// Import a single Froala Editor plugin.
+// import ‘froala-editor/js/plugins/align.min.js’;</p>
+<p>// Import a Froala Editor language file.
+// import ‘froala-editor/js/languages/de.js’;</p>
+<p>// Import Angular2 plugin.
+import { FroalaEditorModule, FroalaViewModule } from ‘angular-froala-wysiwyg’;
+…</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Replace</span>
+<span class="pre">`</span></code>
+imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule]
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">with</span>
+<span class="pre">`</span></code>
+imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()]
+<a href="#id16"><span class="problematic" id="id17">``</span></a><a href="#id18"><span class="problematic" id="id19">`</span></a></p>
+<ul class="simple">
+<li><p>Inside <cite>src/app/app-routing.module.ts</cite> remove the line</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">{</span> <span class="pre">path:</span> <span class="pre">'',</span> <span class="pre">redirectTo:</span> <span class="pre">'home',</span> <span class="pre">pathMatch:</span> <span class="pre">'full'</span> <span class="pre">}</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>Inside <cite>src/index.html</cite></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;assets/css/font-awesome.min.css&quot;&gt;</span>
+<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;assets/css/froala_editor.pkgd.min.css&quot;&gt;</span>
+<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;assets/css/froala_style.min.css&quot;&gt;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>In <cite>angular.json</cite> change outpath of build to  “outputPath”: “src/assets” and insert following inside assets of build:</p></li>
+</ul>
+<dl>
+<dt><a href="#id20"><span class="problematic" id="id21">``</span></a><a href="#id22"><span class="problematic" id="id23">`</span></a>javascript</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>“glob”: “<a href="#id24"><span class="problematic" id="id25">**</span></a>/<a href="#id26"><span class="problematic" id="id27">*</span></a>”,
+“input”: “node_modules/froala-editor/css”,
+“output”: “css”</p>
+</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div><p>“glob”: “<a href="#id28"><span class="problematic" id="id29">**</span></a>/<a href="#id30"><span class="problematic" id="id31">*</span></a>”,
+“input”: “node_modules/font-awesome/css”,
+“output”: “css”</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“glob”: “<a href="#id32"><span class="problematic" id="id33">**</span></a>/<a href="#id34"><span class="problematic" id="id35">*</span></a>”,
+“input”: “node_modules/font-awesome/fonts”,
+“output”: “fonts”</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“glob”: “<a href="#id36"><span class="problematic" id="id37">**</span></a>/<a href="#id38"><span class="problematic" id="id39">*</span></a>”,
+“input”: “node_modules/froala-editor/js”,
+“output”: “js”</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p><a href="#id40"><span class="problematic" id="id41">``</span></a><a href="#id42"><span class="problematic" id="id43">`</span></a></p>
+</div>
+<div class="section" id="run-your-app">
+<h3>Run your App<a class="headerlink" href="#run-your-app" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">ionic</span> <span class="pre">build</span>
+<span class="pre">ionic</span> <span class="pre">serve</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="use-with-webpack">
+<h2>Use with <cite>webpack</cite><a class="headerlink" href="#use-with-webpack" title="永久链接至标题">¶</a></h2>
+<p>Create webpack app</p>
+<p><em>Note</em>: you can skip this part if you already have application generated.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">--depth</span> <span class="pre">1</span> <span class="pre">https://github.com/AngularClass/angular-starter.git</span>
+<span class="pre">cd</span> <span class="pre">angular-starter</span>
+<span class="pre">npm</span> <span class="pre">install</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">rxjs&#64;6.0.0</span> <span class="pre">--save</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">&#64;types/node&#64;10.1.4</span>
+<span class="pre">`</span></code></p>
+<div class="section" id="id44">
+<h3>Add angular-froala-wysiwyg<a class="headerlink" href="#id44" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>install <cite>angular-froala-wysiwyg</cite></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">angular-froala-wysiwyg</span> <span class="pre">--save</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/app/app.module.ts</cite> and add</p></li>
+</ul>
+<p><a href="#id45"><span class="problematic" id="id46">``</span></a><a href="#id47"><span class="problematic" id="id48">`</span></a>typescript
+// Import all Froala Editor plugins.
+// import ‘froala-editor/js/plugins.pkgd.min.js’;</p>
+<p>// Import a single Froala Editor plugin.
+// import ‘froala-editor/js/plugins/align.min.js’;</p>
+<p>// Import a Froala Editor language file.
+// import ‘froala-editor/js/languages/de.js’;</p>
+<p>// Import Angular plugin.
+import { FroalaEditorModule, FroalaViewModule } from ‘angular-froala-wysiwyg’;
+…</p>
+<dl class="simple">
+<dt>&#64;NgModule({</dt><dd><p>…
+imports: [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), … ],
+…</p>
+</dd>
+</dl>
+<div class="section" id="id49">
+<h4>})<a class="headerlink" href="#id49" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>open <cite>src/app/app.component.ts</cite> and add to the template</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;div</span> <span class="pre">[froalaEditor]&gt;Hello,</span> <span class="pre">Froala!&lt;/div&gt;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>config/webpack.common.js</cite></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`javascript</span>
+<span class="pre">var</span> <span class="pre">webpack</span> <span class="pre">=</span> <span class="pre">require('webpack');</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>config/webpack.common.js</cite> and add the following to <cite>CopyWebpackPlugin</cite></p></li>
+</ul>
+<p><a href="#id50"><span class="problematic" id="id51">``</span></a><a href="#id52"><span class="problematic" id="id53">`</span></a>javascript
+{</p>
+<blockquote>
+<div><p>from: ‘node_modules/froala-editor/css/’,
+to: ‘assets/froala-editor/css/’,</p>
+</div></blockquote>
+</div>
+<div class="section" id="id54">
+<h4>},<a class="headerlink" href="#id54" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>open <cite>config/head-config.common.js</cite> and add a new entry to link</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`javascript</span>
+<span class="pre">{</span> <span class="pre">rel:</span> <span class="pre">'stylesheet',</span> <span class="pre">href:</span> <span class="pre">'/assets/froala-editor/css/froala_editor.pkgd.min.css'</span> <span class="pre">},</span>
+<span class="pre">{</span> <span class="pre">rel:</span> <span class="pre">'stylesheet',</span> <span class="pre">href:</span> <span class="pre">'/assets/froala-editor/css/froala_style.min.css'</span> <span class="pre">}</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="run-webpack-app">
+<h3>Run webpack app<a class="headerlink" href="#run-webpack-app" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">start</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="use-with-angular-seed">
+<h2>Use with <cite>angular-seed</cite><a class="headerlink" href="#use-with-angular-seed" title="永久链接至标题">¶</a></h2>
+<div class="section" id="create-angular-seed-app">
+<h3>Create angular-seed app<a class="headerlink" href="#create-angular-seed-app" title="永久链接至标题">¶</a></h3>
+<p><em>Note</em>: you can skip this part if you already have application generated. For more details please also read: <a class="reference external" href="https://github.com/mgechev/angular-seed">https://github.com/mgechev/angular-seed</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">--depth</span> <span class="pre">1</span> <span class="pre">https://github.com/mgechev/angular-seed.git</span>
+<span class="pre">cd</span> <span class="pre">angular-seed</span>
+<span class="pre">npm</span> <span class="pre">install</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="id55">
+<h3>Add angular-froala-wysiwyg<a class="headerlink" href="#id55" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>install <cite>angular-froala-wysiwyg</cite></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">angular-froala-wysiwyg</span> <span class="pre">--save</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>tools/config/project.config.ts</cite> file and <strong>uncomment</strong> the following line from the top of the file</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`typescript</span>
+<span class="pre">import</span> <span class="pre">{</span> <span class="pre">ExtendPackages</span> <span class="pre">}</span> <span class="pre">from</span> <span class="pre">'./seed.config.interfaces';</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>in <cite>tools/config/project.config.ts</cite> file add</p></li>
+</ul>
+<p><a href="#id56"><span class="problematic" id="id57">``</span></a><a href="#id58"><span class="problematic" id="id59">`</span></a>typescript
+…</p>
+<dl class="simple">
+<dt>this.NPM_DEPENDENCIES = [</dt><dd><p>…this.NPM_DEPENDENCIES,
+{ src: ‘froala-editor/css/froala_editor.pkgd.min.css’, inject: true },
+{ src: ‘froala-editor/css/froala_style.min.css’, inject: true }</p>
+</dd>
+</dl>
+<p>];</p>
+<p>…</p>
+<dl>
+<dt>let additionalPackages: ExtendPackages[] = [</dt><dd><p>// required for dev build
+{</p>
+<blockquote>
+<div><p>name:’angular-froala-wysiwyg’,
+path:’node_modules/angular-froala-wysiwyg/bundles/angular-froala-wysiwyg.umd.min.js’</p>
+</div></blockquote>
+<p>},</p>
+<p>// required for prod build
+{</p>
+<blockquote>
+<div><p>name:’angular-froala-wysiwyg/<a href="#id60"><span class="problematic" id="id61">*</span></a>’,
+path:’node_modules/angular-froala-wysiwyg/bundles/angular-froala-wysiwyg.umd.min.js’</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>]</p>
+<p>this.addPackagesBundles(additionalPackages);
+<a href="#id62"><span class="problematic" id="id63">``</span></a><a href="#id64"><span class="problematic" id="id65">`</span></a></p>
+<ul class="simple">
+<li><p>open <cite>src/client/app/home/home.module.ts</cite> and add</p></li>
+</ul>
+<p><a href="#id66"><span class="problematic" id="id67">``</span></a><a href="#id68"><span class="problematic" id="id69">`</span></a>typescript
+// Import all Froala Editor plugins.
+// import ‘froala-editor/js/plugins.pkgd.min.js’;</p>
+<p>// Import a single Froala Editor plugin.
+// import ‘froala-editor/js/plugins/align.min.js’;</p>
+<p>// Import a Froala Editor language file.
+// import ‘froala-editor/js/languages/de.js’;</p>
+<p>// Import Angular2 plugin.
+import { FroalaEditorModule, FroalaViewModule } from ‘angular-froala-wysiwyg’;
+…</p>
+<dl class="simple">
+<dt>&#64;NgModule({</dt><dd><p>…
+imports: [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot() … ],
+…</p>
+</dd>
+</dl>
+<div class="section" id="id70">
+<h4>})<a class="headerlink" href="#id70" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>open <cite>src/client/app/home/home.component.html</cite> and add</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;div</span> <span class="pre">[froalaEditor]&gt;Hello,</span> <span class="pre">Froala!&lt;/div&gt;</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="id71">
+<h3>Run webpack app<a class="headerlink" href="#id71" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">start</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="use-with-system-js-and-jit">
+<h2>Use with <cite>system.js</cite> and <cite>JIT</cite><a class="headerlink" href="#use-with-system-js-and-jit" title="永久链接至标题">¶</a></h2>
+<div class="section" id="create-angular-app">
+<h3>Create Angular app<a class="headerlink" href="#create-angular-app" title="永久链接至标题">¶</a></h3>
+<p><em>Note</em>: you can skip this part if you already have application generated.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/angular/quickstart.git</span> <span class="pre">angular-quickstart</span>
+<span class="pre">cd</span> <span class="pre">angular-quickstart</span>
+<span class="pre">npm</span> <span class="pre">install</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="id72">
+<h3>Add angular-froala-wysiwyg<a class="headerlink" href="#id72" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>install <cite>angular-froala-wysiwyg</cite></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">angular-froala-wysiwyg</span> <span class="pre">--save</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/index.html</cite> and add</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;node_modules/froala-editor/css/froala_editor.pkgd.min.css&quot;&gt;</span>
+<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;node_modules/froala-editor/css/froala_style.min.css&quot;&gt;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/app/app.module.ts</cite> and add</p></li>
+</ul>
+<p><a href="#id73"><span class="problematic" id="id74">``</span></a><a href="#id75"><span class="problematic" id="id76">`</span></a>typescript
+// Import all Froala Editor plugins.
+// import ‘froala-editor/js/plugins.pkgd.min.js’;</p>
+<p>// Import a single Froala Editor plugin.
+// import ‘froala-editor/js/plugins/align.min.js’;</p>
+<p>// Import a Froala Editor language file.
+// import ‘froala-editor/js/languages/de.js’;</p>
+<p>// Import Angular2 plugin.
+import { FroalaEditorModule, FroalaViewModule } from ‘angular-froala-wysiwyg’;
+…</p>
+<dl class="simple">
+<dt>&#64;NgModule({</dt><dd><p>…
+imports: [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), … ],
+…</p>
+</dd>
+</dl>
+<div class="section" id="id77">
+<h4>})<a class="headerlink" href="#id77" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>open <cite>src/app/app.component.ts</cite> file and add to the template</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;div</span> <span class="pre">[froalaEditor]&gt;Hello,</span> <span class="pre">Froala!&lt;/div&gt;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/systemjs.config.js</cite> file and add to map</p></li>
+</ul>
+<p><a href="#id78"><span class="problematic" id="id79">``</span></a><a href="#id80"><span class="problematic" id="id81">`</span></a>javascript
+map: {</p>
+<blockquote>
+<div><p>…
+‘angular-froala-wysiwyg’: ‘npm:angular-froala-wysiwyg/bundles/angular-froala-wysiwyg.umd.js’,
+…</p>
+</div></blockquote>
+</div>
+<div class="section" id="id82">
+<h4>}<a class="headerlink" href="#id82" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li></li>
+</ul>
+</div>
+</div>
+<div class="section" id="run-app">
+<h3>Run app<a class="headerlink" href="#run-app" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">start</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="use-with-aot">
+<h2>Use with <cite>aot</cite><a class="headerlink" href="#use-with-aot" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id83">
+<h3>Create Angular app<a class="headerlink" href="#id83" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>ng new froala-aot</p></li>
+<li><p>npm install font-awesome</p></li>
+<li><p>npm install froala-editor</p></li>
+</ol>
+<ul class="simple">
+<li><p>Go to <cite>angular.json</cite> and change <cite>architect.build.outputPath</cite> to <cite>src/dist</cite> and add following code to <cite>architect.build.options.assets</cite></p></li>
+</ul>
+<p><a href="#id84"><span class="problematic" id="id85">``</span></a><a href="#id86"><span class="problematic" id="id87">`</span></a>javascript
+{</p>
+<blockquote>
+<div><p>“glob”: “<a href="#id88"><span class="problematic" id="id89">**</span></a>/<a href="#id90"><span class="problematic" id="id91">*</span></a>”,
+“input”: “./node_modules/froala-editor”,
+“output”: “assets/froala-editor/”</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“glob”: “<a href="#id92"><span class="problematic" id="id93">**</span></a>/<a href="#id94"><span class="problematic" id="id95">*</span></a>”,
+“input”: “./node_modules/font-awesome”,
+“output”: “assets/font-awesome/”</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“glob”: “<a href="#id96"><span class="problematic" id="id97">**</span></a>/<a href="#id98"><span class="problematic" id="id99">*</span></a>”,
+“input”: “./node_modules/jquery”,
+“output”: “assets/jquery/”</p>
+</div></blockquote>
+<div class="section" id="id100">
+<h4>}<a class="headerlink" href="#id100" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>Go to <cite>package.json</cite> and update <cite>scripts.build</cite> to <cite>ng build –aot</cite> and <cite>scripts.start</cite> to <cite>ng serve –aot</cite></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id101">
+<h3>Add angular-froala-wysiwyg<a class="headerlink" href="#id101" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>install <cite>angular-froala-wysiwyg</cite></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">install</span> <span class="pre">angular-froala-wysiwyg</span> <span class="pre">--save</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/index.html</cite> and add</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;assets/font-awesome/css/font-awesome.min.css&quot;&gt;</span>
+<span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;assets/froala-editor/css/froala_editor.pkgd.min.css&quot;&gt;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>open <cite>src/app/app.module.ts</cite> and add</p></li>
+</ul>
+<p><a href="#id102"><span class="problematic" id="id103">``</span></a><a href="#id104"><span class="problematic" id="id105">`</span></a>typescript
+// Import all Froala Editor plugins.
+// import ‘froala-editor/js/plugins.pkgd.min.js’;</p>
+<p>// Import a single Froala Editor plugin.
+// import ‘froala-editor/js/plugins/align.min.js’;</p>
+<p>// Import a Froala Editor language file.
+// import ‘froala-editor/js/languages/de.js’;</p>
+<p>// Import Angular2 plugin.
+import { FroalaEditorModule, FroalaViewModule } from ‘angular-froala-wysiwyg’;
+…</p>
+<dl class="simple">
+<dt>&#64;NgModule({</dt><dd><p>…
+imports: [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), … ],
+…</p>
+</dd>
+</dl>
+<div class="section" id="id106">
+<h4>})<a class="headerlink" href="#id106" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>open <cite>src/app/app.component.ts</cite> file and add to the template</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`html</span>
+<span class="pre">&lt;div</span> <span class="pre">[froalaEditor]&gt;Hello,</span> <span class="pre">Froala!&lt;/div&gt;</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="id107">
+<h3>Run app<a class="headerlink" href="#id107" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build</span>
+<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">start</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">angular froala wysiwyg</a></h1>
+
+
+
+
+
+
+
+
+<h3>导航</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">Update editor instructions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#use-with-angular-cli">Use with Angular CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-with-ionic-v2-or-v3">Use with <cite>ionic v2 or v3</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-with-webpack">Use with <cite>webpack</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-with-angular-seed">Use with <cite>angular-seed</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-with-system-js-and-jit">Use with <cite>system.js</cite> and <cite>JIT</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-with-aot">Use with <cite>aot</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual Initialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">Displaying HTML</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="update.html" title="上一章">Update editor instructions</a></li>
+      <li>Next: <a href="usage.html" title="下一章">Usage</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Band Cap.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.0+/a9fa81e</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/integration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

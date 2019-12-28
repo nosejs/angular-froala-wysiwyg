@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>用法 &#8212; angular froala wysiwyg v2019.09.17 文档</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Manual Initialization" href="manual.html" />
+    <link rel="prev" title="Integration" href="integration.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>用法<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>选项<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>您可以通过编辑选项输入（可选）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">froalaEditor</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;options&#39;</span>
+</pre></div>
+</div>
+<p>你可以通过任何现有的Froala选项。 请参考 <a class="reference external" href="https://www.froala.com/wysiwyg-editor/docs/options">Froala文档</a> 查看所有可用的选项列表:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">options</span>: <span class="kt">Object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">placeholderText</span><span class="o">:</span> <span class="s1">&#39;Edit Your Content Here!&#39;</span><span class="p">,</span>
+  <span class="nx">charCounterCount</span>: <span class="kt">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>其他选项用于:</p>
+<ul class="simple">
+<li><p><strong>immediateAngularModelUpdate</strong>: (default: false) 这个选项只要一键在编辑器发布同步角模型。</p></li>
+</ul>
+<p>请注意，它可能会影响性能。</p>
+</div>
+<div class="section" id="id3">
+<h2>事件和方法<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>事件可以通过与选择，具有重要事件和对象，其中的关键是事件的名称和值是回调函数。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">options</span>: <span class="kt">Object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">placeholder</span><span class="o">:</span> <span class="s2">&quot;Edit Me&quot;</span><span class="p">,</span>
+  <span class="nx">events</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s1">&#39;focus&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">editor</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">editor</span><span class="p">.</span><span class="nx">selection</span><span class="p">.</span><span class="nx">get</span><span class="p">());</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>使用从回调可以调用编辑方法的参数编辑器实例作为 <a class="reference external" href="http://froala.com/wysiwyg-editor/docs/methods">方法的文档</a> 中描述.</p>
+<p>Froala事件在 <a class="reference external" href="https://froala.com/wysiwyg-editor/docs/events">事件文档</a> 中描述.</p>
+</div>
+<div class="section" id="id6">
+<h2>模型<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>所见即所得的HTML编辑器内容模型。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="n">froalaModel</span><span class="p">)]</span><span class="o">=</span><span class="s2">&quot;editorContent&quot;</span>
+</pre></div>
+</div>
+<p>经过初步内容:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">editorContent</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s1">&#39;My Document\&#39;s Title&#39;</span>
+</pre></div>
+</div>
+<p>用在其他地方的内容:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;input [ngModel]=&quot;editorContent&quot;/&gt;
+&lt;input [(ngModel)]=&quot;editorContent&quot;/&gt;
+&lt;!-- For two way binding --&gt;
+</pre></div>
+</div>
+<p>其他双向绑定示例:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;div [froalaEditor] [(froalaModel)]=&quot;editorContent&quot;&gt;&lt;/div&gt;
+&lt;div [froalaEditor] [(froalaModel)]=&quot;editorContent&quot;&gt;&lt;/div&gt;
+</pre></div>
+</div>
+<p>与活性形式使用它:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;form [formGroup]=&quot;form&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+  &lt;textarea [froalaEditor] formControlName=&quot;formModel&quot;&gt;&lt;/textarea&gt;
+  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre></div>
+</div>
+<p>如果你想使用双向绑定，以显示在其他地方的表单模型必须包括 <cite>[（froalaModel）]</cite>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;form [formGroup]=&quot;form&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+  &lt;textarea [froalaEditor] formControlName=&quot;formModel&quot; [(froalaModel)]=&quot;form.formModel&quot;&gt;&lt;/textarea&gt;
+  &lt;div [froalaView]=&quot;form.formModel&quot;&gt;&lt;/div&gt;
+  &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre></div>
+</div>
+<p>如果你想换froalaEditor指令到支持活性形式，请参阅从演示 <a class="reference external" href="https://github.com/froala/angular-froala-wysiwyg/blob/master/demo/src/app/froala.component.ts">froala.component.ts</a> 一个组成部分。</p>
+</div>
+<div class="section" id="id7">
+<h2>扩展功能<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>您可以通过添加像波纹管自定义按钮来扩展功能:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Import Froala Editor.</span>
+<span class="kr">import</span> <span class="nx">FroalaEditor</span> <span class="nx">from</span> <span class="s1">&#39;froala-editor&#39;</span><span class="p">;</span>
+
+<span class="c1">// We will make usage of the Init hook and make the implementation there.</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span>  <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;app-demo&#39;</span><span class="p">,</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="sb">`&lt;div class=&quot;sample&quot;&gt;</span>
+<span class="sb">              &lt;h2&gt;Sample 11: Add Custom Button&lt;/h2&gt;</span>
+<span class="sb">              &lt;div [froalaEditor]=&quot;options&quot; [(froalaModel)]=&quot;content&quot; &gt;&lt;/div&gt;</span>
+<span class="sb">            &lt;/div&gt;`</span><span class="p">,</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">AppComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span><span class="p">{</span>
+
+  <span class="nx">ngOnInit</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">FroalaEditor</span><span class="p">.</span><span class="nx">DefineIcon</span><span class="p">(</span><span class="s1">&#39;alert&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;info&#39;</span><span class="p">});</span>
+    <span class="nx">FroalaEditor</span><span class="p">.</span><span class="nx">RegisterCommand</span><span class="p">(</span><span class="s1">&#39;alert&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span>
+      <span class="nx">focus</span>: <span class="kt">false</span><span class="p">,</span>
+      <span class="nx">undo</span>: <span class="kt">false</span><span class="p">,</span>
+      <span class="nx">refreshAfterCallback</span>: <span class="kt">false</span><span class="p">,</span>
+
+      <span class="nx">callback</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello!&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="kr">public</span> <span class="nx">options</span>: <span class="kt">Object</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">charCounterCount</span>: <span class="kt">true</span><span class="p">,</span>
+    <span class="nx">toolbarButtons</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraphFormat&#39;</span><span class="p">,</span><span class="s1">&#39;alert&#39;</span><span class="p">],</span>
+    <span class="nx">toolbarButtonsXS</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraphFormat&#39;</span><span class="p">,</span><span class="s1">&#39;alert&#39;</span><span class="p">],</span>
+    <span class="nx">toolbarButtonsSM</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraphFormat&#39;</span><span class="p">,</span><span class="s1">&#39;alert&#39;</span><span class="p">],</span>
+    <span class="nx">toolbarButtonsMD</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraphFormat&#39;</span><span class="p">,</span><span class="s1">&#39;alert&#39;</span><span class="p">],</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>特殊标签<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>您也可以使用编辑器上** ** IMG ** <strong>按钮，输入</strong> <strong>和</strong> A <a href="#id9"><span class="problematic" id="id10">**</span></a>标签:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;img [froalaEditor] [(froalaModel)]=&quot;imgObj&quot;/&gt;
+</pre></div>
+</div>
+<p>该模型必须包含您的特殊标签的属性的对象。例:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">imgObj</span>: <span class="kt">Object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;path/to/image.jpg&#39;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>作为属性使用过程中改变froalaModel将发生变化。</p>
+<ul class="simple">
+<li><p>froalaModel可以包含命名** <a href="#id11"><span class="problematic" id="id12">**</span></a>的innerHTML一个特殊的属性，其插入的innerHTML在元件: 如果你正在使用的“按钮”标签，你可以指定按钮上的文字是这样:</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">buttonModel</span>: <span class="kt">Object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">innerHTML</span><span class="o">:</span> <span class="s1">&#39;Click Me&#39;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>随着按钮文本由编辑修改，** <a href="#id13"><span class="problematic" id="id14">**</span></a>的innerHTML从ButtonModel的模型属性也将被修改。</p>
+</div>
+<div class="section" id="id15">
+<h2>特殊标签的特定选项<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p><strong>angularIgnoreAttrs</strong>: (default: null) 此选项是要忽略的属性的数组时，编辑器将更新froalaModel:</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">inputOptions</span>: <span class="kt">Object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">angularIgnoreAttrs</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">angular froala wysiwyg</a></h1>
+
+
+
+
+
+
+
+
+<h3>导航</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">Update editor instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">用法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">选项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">事件和方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">扩展功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">特殊标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">特殊标签的特定选项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual Initialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">Displaying HTML</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="integration.html" title="上一章">Integration</a></li>
+      <li>Next: <a href="manual.html" title="下一章">Manual Initialization</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Band Cap.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.0+/a9fa81e</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/usage.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
